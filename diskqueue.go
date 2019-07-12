@@ -637,5 +637,6 @@ func (d *diskQueue) ioLoop() {
 exit:
 	log.Info().Str("name", d.name).Msg("diskqueue: closing io loop")
 	syncTicker.Stop()
+	close(d.readChan)
 	d.exitSyncChan <- 1
 }
